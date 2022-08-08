@@ -16,6 +16,7 @@ const defaultOptions = {
   allowedHeaders: null,
   maxAge: null,
   preflight: true,
+  privateNetwork: false,
   strictPreflight: true
 }
 
@@ -142,6 +143,10 @@ function addCorsHeaders (req, reply, originOption, corsOptions) {
 
   if (corsOptions.credentials) {
     reply.header('Access-Control-Allow-Credentials', 'true')
+  }
+  
+  if (corsOptions.privateNetwork) {
+    reply.header('Access-Control-Allow-Private-Network', 'true')
   }
 
   if (corsOptions.exposedHeaders !== null) {
